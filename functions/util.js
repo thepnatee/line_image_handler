@@ -97,7 +97,7 @@ exports.analyzeImageAzuerAI = async (imageUrl) => {
 
 exports.processImageGoogleVision = async (imageURL) => {
   const clientVision = new vision.ImageAnnotatorClient({
-    keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
+    keyFilename: 'config-vision.json'
   });
   const response = await axios.get(imageURL, {
     responseType: 'arraybuffer'

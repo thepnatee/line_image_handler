@@ -72,11 +72,6 @@ exports.tesseractOCR = functions.region("asia-northeast1").https.onRequest(async
             const sum = await util.getCurrencyOCR(responseOCR)
             const textSlip = "วันที่ : " + time + "\n ยอดเงิน: " + await util.formatCurrency(sum)
 
-            console.log("--")
-            console.log(textSlip)
-            console.log("--")
-
-
             /* ✅ 3.3 Insert Object to Firestore  */
             await firebase.insertImageGroup(event.source.groupId, event.message.id, publicUrl)
 
@@ -245,7 +240,10 @@ exports.googleVision = functions.region("asia-northeast1").https.onRequest(async
             const publicUrl = await firebase.saveImageToStorage(event.message, event.source.groupId, binary)
 
             /* ✅ 3.3 Get Content OCR  */
-            const responseOCR = await util.processImageGoogleVision(publicUrl)
+            const responseOCR = await util.processImageGoogleVision("https://firebasestorage.googleapis.com/v0/b/line-bucket.appspot.com/o/C2a1dcb7e0327cb48bd7fd83bc8dcb683%2F2023-04-23%2FmessageImage_1682837519942.jpg?alt=media&token=3f69b0bb-42f6-47a8-97fc-da98aaa70f0d")
+            console.log("--")
+            console.log(responseOCR)
+            console.log("--")
             const time = await util.getTimeOCR(responseOCR)
             const sum = await util.getCurrencyOCR(responseOCR)
 
