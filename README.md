@@ -22,11 +22,8 @@ mv .env.example .env
 2. LINE_CHANNEL_ACCESS_TOKEN='LINE Developer Console'
 3. BUCKET_NAME='firebase storage'
 
-4. GOOGLE_APPLICATION_CREDENTIALS='google vision enable and create service account'
-
-
-5. AZURE_COGITIVE_SERVICES_ENDPOINT='create service from congitive services '
-6. AZURE_COGITIVE_SERVICES_SUBSCRIPTION_KEY='credential key from computer vision'
+4. AZURE_COGITIVE_SERVICES_ENDPOINT='create service from congitive services '
+5. AZURE_COGITIVE_SERVICES_SUBSCRIPTION_KEY='credential key from computer vision'
 
 
 
@@ -47,10 +44,13 @@ npm run deploy
 
 
 -----
-## Firebase Service 
-1. Cloud Functions
-2. Cloud Storage
-
+## Goolge Service 
+1. Firebase Cloud Functions
+2. Firebase Cloud Storage
+3. Google Vision
+-----
+## Azure Cognitive Service
+1. Computer Vision
 -----
 
 ## LINE API
