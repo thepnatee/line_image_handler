@@ -20,7 +20,7 @@ exports.tesseractOCR = functions.region("asia-northeast1").https.onRequest(async
     for (const event of events) {
         /* Using LINE Group Only */
         if (event.source.type !== "group") {
-            return;
+            return res.end();
         }
 
         /*🔥 1. Join to Chat Group 🔥
@@ -28,7 +28,7 @@ exports.tesseractOCR = functions.region("asia-northeast1").https.onRequest(async
         */
         if (event.type === "join") {
             await line.reply(event.replyToken, [messages.welcomeMessage()])
-            return;
+            return res.end();
         }
 
 
@@ -42,7 +42,7 @@ exports.tesseractOCR = functions.region("asia-northeast1").https.onRequest(async
                     await line.reply(event.replyToken, [messages.memberJoinedMessage(profile.data.displayName, event.source.groupId)])
                 }
             }
-            return;
+            return res.end();
         }
 
 
@@ -78,7 +78,7 @@ exports.tesseractOCR = functions.region("asia-northeast1").https.onRequest(async
             // /* ✅ 3.4 Reply View album  */
             await line.reply(event.replyToken, [messages.imageView(textSlip, event.message.id, publicUrl)])
 
-            return;
+            return res.end();
         }
 
 
@@ -87,7 +87,7 @@ exports.tesseractOCR = functions.region("asia-northeast1").https.onRequest(async
         */
         if (event.type === "leave") {
             await firebase.deleteGroup(event.source.groupId)
-            return;
+            return res.end();
         }
 
 
@@ -113,7 +113,7 @@ exports.azureComputerVision = functions.region("asia-northeast1").https.onReques
     for (const event of events) {
         /* Using LINE Group Only */
         if (event.source.type !== "group") {
-            return;
+            return res.end();
         }
 
         /*🔥 1. Join to Chat Group 🔥
@@ -121,7 +121,7 @@ exports.azureComputerVision = functions.region("asia-northeast1").https.onReques
         */
         if (event.type === "join") {
             await line.reply(event.replyToken, [messages.welcomeMessage()])
-            return;
+            return res.end();
         }
 
 
@@ -135,7 +135,7 @@ exports.azureComputerVision = functions.region("asia-northeast1").https.onReques
                     await line.reply(event.replyToken, [messages.text(JSON.stringify(responseOCR)), messages.memberJoinedMessage(profile.data.displayName, event.source.groupId)])
                 }
             }
-            return;
+            return res.end();
         }
 
 
@@ -164,7 +164,7 @@ exports.azureComputerVision = functions.region("asia-northeast1").https.onReques
             /* ✅ 3.5 Reply View album  */
             await line.reply(event.replyToken, [messages.text(JSON.stringify(responseOCR))])
 
-            return;
+            return res.end();
         }
 
 
@@ -173,7 +173,7 @@ exports.azureComputerVision = functions.region("asia-northeast1").https.onReques
         */
         if (event.type === "leave") {
             await firebase.deleteGroup(event.source.groupId)
-            return;
+            return res.end();
         }
 
 
@@ -199,7 +199,7 @@ exports.googleVision = functions.region("asia-northeast1").https.onRequest(async
     for (const event of events) {
         /* Using LINE Group Only */
         if (event.source.type !== "group") {
-            return;
+            return res.end();
         }
 
         /*🔥 1. Join to Chat Group 🔥
@@ -207,7 +207,7 @@ exports.googleVision = functions.region("asia-northeast1").https.onRequest(async
         */
         if (event.type === "join") {
             await line.reply(event.replyToken, [messages.welcomeMessage()])
-            return;
+            return res.end();
         }
 
 
@@ -221,7 +221,7 @@ exports.googleVision = functions.region("asia-northeast1").https.onRequest(async
                     await line.reply(event.replyToken, [messages.text(JSON.stringify(responseOCR)), messages.memberJoinedMessage(profile.data.displayName, event.source.groupId)])
                 }
             }
-            return;
+            return res.end();
         }
 
 
@@ -255,7 +255,7 @@ exports.googleVision = functions.region("asia-northeast1").https.onRequest(async
             await line.reply(event.replyToken, [messages.imageView(textSlip, event.message.id, publicUrl)])
 
 
-            return;
+            return res.end();
         }
 
 
@@ -264,7 +264,7 @@ exports.googleVision = functions.region("asia-northeast1").https.onRequest(async
         */
         if (event.type === "leave") {
             await firebase.deleteGroup(event.source.groupId)
-            return;
+            return res.end();
         }
 
 

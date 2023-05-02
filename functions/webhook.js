@@ -20,7 +20,7 @@ exports.receive = functions.region("asia-northeast1").https.onRequest(async (req
     for (const event of events) {
         /* Using LINE Group Only */
         if (event.source.type !== "group") {
-            return;
+            return res.end();
         }
 
         /*🔥 1. Join to Chat Group 🔥
@@ -28,7 +28,7 @@ exports.receive = functions.region("asia-northeast1").https.onRequest(async (req
         */
         if (event.type === "join") {
             await line.reply(event.replyToken, [messages.welcomeMessage()])
-            return;
+            return res.end();
         }
 
 
@@ -42,7 +42,7 @@ exports.receive = functions.region("asia-northeast1").https.onRequest(async (req
                     await line.reply(event.replyToken, [messages.memberJoinedMessage(profile.data.displayName, event.source.groupId)])
                 }
             }
-            return;
+            return res.end();
         }
 
 
@@ -68,7 +68,7 @@ exports.receive = functions.region("asia-northeast1").https.onRequest(async (req
             /* ✅ 3.4 Reply View album  */
             await line.reply(event.replyToken, [messages.imageView(event.message.id, publicUrl)])
 
-            return;
+            return res.end();
         }
 
 
@@ -78,7 +78,7 @@ exports.receive = functions.region("asia-northeast1").https.onRequest(async (req
         */
         if (event.type === "leave") {
             await firebase.deleteGroup(event.source.groupId)
-            return;
+            return res.end();
         }
 
 
